@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+		<title> MJ </title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="style3.css">
+		<link rel="icon" href="logo1.png">
+		</head>
+		
+		<body>
+		   
+	<header>
+	<div class="ogol">
+	<div class="logo">
+        <img src="logo1.png" alt="Logo">
+	</div>
+	   <h2> MediJuana </h2>
+	 </div>
+	<nav class="navbar">
+       
+        
+            <a  href="emptech.html">HOME</a>
+            <a href="about us.html">SYNTHESIS</a>
+			<a class="active" href="vision.html">CONTACTS</a>
+        </nav>
+    </header>
+
+
+
+	   
+	  
+       <section class="contact-header">
+        <h1>Contact Us</h1>
+        <p>
+            For concerns and inquiries please refer to the contact provided below. Thank you.
+       </p>
+	   </section>
+	  
+    <section class="contact-container">
+
+        
+        <div class="info">
+
+            <div class="info-box">
+                <h3>Address</h3>
+                <p>JP Rizal Extn., West Rembo, Makati City, Metro Manila, 1215, Philippines</p>
+            </div>
+
+            <div class="info-box">
+                <h3>Phone</h3>
+                <p>(02) 8882 0675</p>
+            </div>
+			<div class="info-box">
+                <h3>Email</h3>
+                <p>Dave Bornasal
+				<br/>
+				09671903091
+				<br/>
+				dbornasal.4078@umak.edu.ph 
+				<br />
+                <br/>
+                Joahna Marie T. Aguilar
+				<br/>
+                09953747035
+				<br/>
+               jaguilar.2061@umak.edu.ph 
+			   <br/>
+               <br/>
+               Niña Andrea E. Baldonido
+               09266380476
+               nbaldonido.1967@umak.edu.ph 
+			   <br/>
+               <br/>
+               Angel Faith L. Catiil
+			   <br/>
+               0954447189298
+			   <br/>
+               acatiil.3035@umak.edu.ph 
+			   <br/>
+              <br/>
+              Katlyne C. Caruz
+			  <br/>
+              09994871959
+			  <br/>
+              kcaruz.4277@umak.edu.ph 
+			  <br/>
+               <br/>
+              Cleanica C. Calderon 
+			  <br/>
+              09952070159
+			  <br/>
+              ccalderon.2853@umak.edu.ph 
+			  <br/>
+              <br/>
+              Jan Alfred Alba 
+			  <br/>
+              09937476799
+			  <br/>
+              jalba.2803@umak.edu.ph </p>
+            </div>
+
+        </div>
+
+        
+        <div class="form-box">
+            <h4>Leave a comment about what you learned or your thoughts on medical marijuana awareness:</h4> <br/>
+			<form>
+                <label>Full Name</label>
+                <input type="text" placeholder="Enter your name">
+
+                <label>Email</label>
+                <input type="email" placeholder="Enter your email">
+
+                <label>Your Comment</label>
+                <textarea placeholder="Type your comment..."></textarea>
+
+                <button type="submit">Send</button>
+				
+            </form>
+			</div>
+			<script>
+			<h2 style="margin-top:40px;">Comments</h2>
+<div id="commentsList"></div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+    emailjs.init("YOUR_EMAILJS_USER_ID");  
+</script>
+</script>
+<script>
+const firebaseConfig = {
+    apiKey: "AIzaSyBz5ovIm75ttsSlVbUCgpNuXQIeNEBa5Rw",
+    authDomain: "emptech-405d0.firebaseapp.com",
+    projectId: "emptech-405d0",
+    storageBucket: "emptech-405d0.appspot.com",
+    messagingSenderId: "218178515954",
+    appId: "1:218178515954:web:98ae8ae181ab52cbf8f16b"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+
+function sendEmailNotification(name, email, comment) {
+    emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+        user_name: name,
+        user_email: email,
+        user_comment: comment
+    })
+    .then(() => console.log("Email sent"))
+    .catch(err => console.error("Email error:", err));
+}
+
+
+function sendComment() {
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const comment = document.getElementById("comment").value.trim();
+
+    if (!name || !email || !comment) {
+        alert("Please fill all fields");
+        return;
+    }
+
+    db.collection("comments").add({
+        name,
+        email,
+        comment,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    }).then(() => {
+        sendEmailNotification(name, email, comment); // SEND EMAIL
+        alert("Comment submitted!");
+
+        document.getElementById("name").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("comment").value = "";
+    });
+}
+
+
+function createAvatar(name) {
+    return `
+        <div style="
+            width:45px; height:45px; border-radius:50%;
+            background:#4caf50; color:white; display:flex;
+            align-items:center; justify-content:center;
+            font-weight:bold; font-size:18px;
+        ">
+            ${name.charAt(0).toUpperCase()}
+        </div>
+    `;
+}
+
+
+function enableEdit(id, oldComment) {
+    const commentBox = document.getElementById(comment-${id});
+    commentBox.innerHTML = `
+        <textarea id="edit-text-${id}" style="width:100%; padding:10px;">${oldComment}</textarea>
+        <button class="save-btn" onclick="saveEdit('${id}')">Save</button>
+        <button class="cancel-btn" onclick="loadComments()">Cancel</button>
+    `;
+}
+
+function saveEdit(id) {
+    const newComment = document.getElementById(edit-text-${id}).value;
+
+    db.collection("comments").doc(id).update({
+        comment: newComment
+    }).then(() => {
+        console.log("Updated");
+        loadComments();
+    });
+}
+
+function loadComments() {
+    db.collection("comments")
+        .orderBy("timestamp", "desc")
+        .onSnapshot(snapshot => {
+            let html = "";
+
+            snapshot.forEach(doc => {
+                const data = doc.data();
+                const id = doc.id;
+                const date = data.timestamp ? data.timestamp.toDate().toLocaleString() : "Just now";
+
+                html += `
+                    <div style="
+                        display:flex; gap:12px; background:white;
+                        padding:15px; border-radius:12px;
+                        margin-bottom:15px; box-shadow:0 3px 10px rgba(0,0,0,0.1);
+                    ">
+                        ${createAvatar(data.name)}
+                        <div style="width:100%;">
+                            <strong>${data.name}</strong>
+                            <div style="color:gray; font-size:12px;">${date}</div>
+
+                            <div id="comment-${id}">
+                                <p>${data.comment}</p>
+                            </div>
+
+                            <button class="edit-btn" onclick="enableEdit('${id}', \`${data.comment}\`)">Edit</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            document.getElementById("commentsList").innerHTML = html;
+        });
+}
+
+loadComments();
+</script>
+	
+			
+
+		</body>
+	</html>

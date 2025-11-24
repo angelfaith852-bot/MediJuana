@@ -1,0 +1,128 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+	font-family: verdana;
+
+}
+body {
+	    background-color: #477023;
+        margin: 0px;
+		padding: 0px;
+		font-family: Georgia, serif;
+}
+
+p {
+	color: white;
+}
+	
+
+header {
+	position: sticky;
+	top: 0px;
+    background: #276221;
+    color: white;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+	gap: 50px;
+}
+
+.ogol{
+	font-size: 20px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	justify-content: flex-start;
+    display: flex;
+    align-items: center;
+    gap: 8px; 	
+	
+}
+.logo img {
+	width: 40px;
+    height: 40px;
+	border-radius: 50%;
+    object-fit: cover;
+
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-left: 25px; 
+    font-weight: bold;
+}
+header nav {
+	margin: 0;
+	padding: 0;
+}
+
+header nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: 600;
+}
+header nav a.active{
+	background-color: #3b8132;
+	padding: 10px;
+}
+
+header nav a:hover {
+    background-color: #3b8132;
+	transition:.5s;
+	border-radius: 4px;
+	padding: 7px 5px;
+}
+a {
+	margin-top: 50px;
+    color: white;
+    text-decoration: underline;
+	
+	
+}
+
+.disclaimer-header {
+
+    text-align: center;
+    padding: 15px 20px;
+    color: white;
+    background-blend-mode: darken;
+	margin: 0px;
+}
+
+.disclaimer-header h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 20px;
+	font-style: bold;
+}
+.disclaimer-header p {
+	font-style: bold;
+    font-size: 20px;
+	line-height: 1.7;
+}
+.vision-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 40px 80px;
+}
+
+.vision-text {
+	font-style: bold;
+    width: 45%;
+    font-size: 20px;
+    line-height: 1.7;
+    text-align: justify;
+	margin-top: 50px;
+}
+
+.vision-image img {
+    width: 700px;
+    height: auto;
+    border-radius: 5px;
+	margin-top: 70px;
+}
